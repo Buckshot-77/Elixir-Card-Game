@@ -34,7 +34,7 @@ defmodule Cards do
   end
 
   @doc """
-    Shuffles a deck and returns the cards in a random order.
+    Shuffles a `deck` and returns the cards in a random order.
   """
   def shuffle(deck) do
     Enum.shuffle(deck)
@@ -48,14 +48,14 @@ defmodule Cards do
   end
 
   @doc """
-    Deals a hand to the caller according to the size requested.
+    Deals a hand to the caller according to the `hand_size` requested.
   """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
 
   @doc """
-    Saves the deck into a file.
+    Saves the `deck` into a file.
   """
   def save(deck, filename) do
     binary = :erlang.term_to_binary(deck)
@@ -63,7 +63,7 @@ defmodule Cards do
   end
 
   @doc """
-    Loads a deck from a file.
+    Loads a `deck` from a file.
   """
   def load(filename) do
     read_tuple = File.read(filename)
@@ -75,7 +75,7 @@ defmodule Cards do
   end
 
   @doc """
-    Creates a deck, shuffles it, and then deals a hand.
+    Creates a deck, shuffles it, and then deals a hand according to the `hand_size`.
   """
   def create_hand(hand_size) do
     Cards.create_deck()
