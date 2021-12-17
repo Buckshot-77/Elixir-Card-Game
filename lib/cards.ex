@@ -49,6 +49,15 @@ defmodule Cards do
 
   @doc """
     Deals a hand to the caller according to the `hand_size` requested.
+
+
+  ## Examples
+
+      iex> deck = Cards.create_deck()
+      iex> {hand, deck} = Cards.deal(deck, 2)
+      iex> hand
+      ["Ace of Spades", "Jack of Hearts"]
+
   """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
