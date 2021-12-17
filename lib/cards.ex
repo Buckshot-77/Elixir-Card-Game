@@ -3,7 +3,6 @@ defmodule Cards do
   Provides methods for creating and handling a deck of cards.
   """
 
-
   # comprehentions (for loops) are inherently a map.
 
   @doc """
@@ -42,6 +41,18 @@ defmodule Cards do
 
   @doc """
     Checks if a card is contained in the deck.
+
+
+  ## Examples
+      iex> deck = Cards.create_deck()
+      iex> Cards.contains?(deck, "Ace of Spades")
+      true
+
+      iex> deck = Cards.create_deck()
+      iex> {card, new_deck} = Cards.deal(deck, 1)
+      iex> Cards.contains?(new_deck, card)
+      false
+
   """
   def contains?(deck, card) do
     Enum.member?(deck, card)
@@ -54,9 +65,9 @@ defmodule Cards do
   ## Examples
 
       iex> deck = Cards.create_deck()
-      iex> {hand, deck} = Cards.deal(deck, 2)
+      iex> {hand, _new_deck} = Cards.deal(deck, 2)
       iex> hand
-      ["Ace of Spades", "Jack of Hearts"]
+      ["Ace of Spades", "Ace of Clubs"]
 
   """
   def deal(deck, hand_size) do
@@ -88,7 +99,7 @@ defmodule Cards do
   """
   def create_hand(hand_size) do
     Cards.create_deck()
-    |>Cards.shuffle()
-    |>Cards.deal(hand_size)
+    |> Cards.shuffle()
+    |> Cards.deal(hand_size)
   end
 end
