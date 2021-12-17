@@ -1,20 +1,14 @@
 defmodule Cards do
   @moduledoc """
-  Documentation for `Cards`.
+  Provides methods for creating and handling a deck of cards.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Cards.hello()
-      :world
-
-  """
 
   # comprehentions (for loops) are inherently a map.
 
+  @doc """
+    Returns a list of strings representing a deck of playing cards.
+  """
   def create_deck do
     values = [
       "Ace",
@@ -39,23 +33,38 @@ defmodule Cards do
     end
   end
 
+  @doc """
+    Shuffles a deck and returns the cards in a random order.
+  """
   def shuffle(deck) do
     Enum.shuffle(deck)
   end
 
+  @doc """
+    Checks if a card is contained in the deck.
+  """
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
 
+  @doc """
+    Deals a hand to the caller according to the size requested.
+  """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
 
+  @doc """
+    Saves the deck into a file.
+  """
   def save(deck, filename) do
     binary = :erlang.term_to_binary(deck)
     File.write(filename, binary)
   end
 
+  @doc """
+    Loads a deck from a file.
+  """
   def load(filename) do
     read_tuple = File.read(filename)
 
@@ -65,6 +74,9 @@ defmodule Cards do
     end
   end
 
+  @doc """
+    Creates a deck, shuffles it, and then deals a hand.
+  """
   def create_hand(hand_size) do
     Cards.create_deck()
     |>Cards.shuffle()
